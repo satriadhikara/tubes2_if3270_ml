@@ -6,12 +6,6 @@ import os
 
 class LSTMModelFromScratch:    
     def __init__(self, layers):
-        """
-        Create a LSTM model from a list of layers
-        
-        Parameters:
-        - layers: a list of layer objects with forward() method
-        """
         self.layers = layers
         
         # Calculate and display total parameters
@@ -19,29 +13,11 @@ class LSTMModelFromScratch:
         print(f"From-scratch model created with {self.total_params:,} total parameters")
         
     def forward(self, x):
-        """
-        Forward pass through the entire model
-        
-        Parameters:
-        - x: input data
-        
-        Returns:
-        - output after passing through all layers
-        """
         for layer in self.layers:
             x = layer.forward(x)
         return x
     
     def predict(self, x):
-        """
-        Make predictions on input data
-        
-        Parameters:
-        - x: input data
-        
-        Returns:
-        - predicted class indices
-        """
         # Forward pass
         logits = self.forward(x)
         
@@ -49,12 +25,6 @@ class LSTMModelFromScratch:
         return np.argmax(logits, axis=1)
     
     def count_parameters(self):
-        """
-        Count the total number of parameters in the model
-        
-        Returns:
-        - total_params: int, the total number of parameters
-        """
         total_params = 0
         
         for layer in self.layers:
@@ -168,17 +138,6 @@ class LSTMModelFromScratch:
         
     @classmethod
     def from_keras_weights(cls, weights_path, model_config, vectorizer=None):
-        """
-        Alternative method to create a model from just the weights file and a config
-        
-        Parameters:
-        - weights_path: path to Keras .weights.h5 file
-        - model_config: dictionary with model configuration
-        - vectorizer: TextVectorization layer (optional)
-        
-        Returns:
-        - LSTMModelFromScratch instance
-        """
         from .layers import Embedding, LSTM, Bidirectional, Dropout, Dense, Softmax
         
         # Create a Keras model with the same architecture
@@ -199,15 +158,6 @@ class LSTMModelFromScratch:
 
 
 def create_keras_model_from_config(config):
-    """
-    Creates a Keras model based on the configuration
-    
-    Parameters:
-    - config: dictionary with model configuration
-    
-    Returns:
-    - Keras model
-    """
     lstm_layers = config.get('lstm_layers', 1)
     units_per_layer = config.get('units_per_layer', [64])
     bidirectional = config.get('bidirectional', False)

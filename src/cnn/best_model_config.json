@@ -1,0 +1,13 @@
+{
+  "num_conv_layers": 2,
+  "filters_per_layer": [
+    32,
+    32
+  ],
+  "filter_size": [
+    3,
+    3
+  ],
+  "pooling_type": "max",
+  "final_f1_score": 0.5369205148986673
+}

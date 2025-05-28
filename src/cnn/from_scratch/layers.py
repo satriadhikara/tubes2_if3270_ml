@@ -1,17 +1,37 @@
 import numpy as np
 
 class Conv2D:
-    def __init__(self, weights, biases, stride=1, padding=0):
+    def __init__(self, weights, biases, stride=1, padding=0, activation=None):
         """
         weights: (filter_height, filter_width, input_channels, num_filters)
         biases: (num_filters,)
         stride: int
-        padding: int or 'same' (you'll need to implement 'same' padding logic if used)
+        padding: int or 'same' - 'same' padding maintains input spatial dimensions
+        activation: str - 'relu' or None
         """
+        # Input validation
+        if not isinstance(weights, np.ndarray) or len(weights.shape) != 4:
+            raise ValueError("Weights must be a 4D numpy array with shape (filter_height, filter_width, input_channels, num_filters)")
+        if not isinstance(biases, np.ndarray) or len(biases.shape) != 1:
+            raise ValueError("Biases must be a 1D numpy array with shape (num_filters,)")
+        if weights.shape[3] != biases.shape[0]:
+            raise ValueError("Number of filters in weights must match number of biases")
+        if stride <= 0:
+            raise ValueError("Stride must be a positive integer")
+        
         self.weights = weights
         self.biases = biases
         self.stride = stride
-        self.padding = padding 
+        self.activation = activation
+        
+        # Handle padding parameter
+        if isinstance(padding, str) and padding.lower() == 'same':
+            # Calculate padding to maintain input spatial dimensions
+            self.padding = (weights.shape[0] - 1) // 2
+        elif isinstance(padding, int) and padding >= 0:
+            self.padding = padding
+        else:
+            raise ValueError("Padding must be 'same' or a non-negative integer")
 
         self.input_shape = None
         self.output_shape = None
@@ -51,6 +71,10 @@ class Conv2D:
                         out_x += 1
                     current_y += self.stride
                     out_y += 1
+        
+        if self.activation == 'relu':
+            output = np.maximum(0, output)
+        
         return output
 
 class ReLU:
@@ -67,8 +91,18 @@ class MaxPooling2D:
         pool_size: (height, width) of the pooling window
         stride: if None, defaults to pool_size
         """
-        self.pool_size = pool_size
-        self.stride = stride if stride is not None else pool_size[0]
+        if isinstance(pool_size, int):
+            self.pool_size = (pool_size, pool_size)
+        else:
+            self.pool_size = pool_size
+            
+        if stride is None:
+            self.stride = self.pool_size[0]
+        elif isinstance(stride, int):
+            self.stride = stride
+        else:
+            raise ValueError("Stride must be an integer or None")
+            
         self.input_data = None
 
     def forward(self, x):
@@ -100,8 +134,22 @@ class MaxPooling2D:
 
 class AveragePooling2D:
     def __init__(self, pool_size=(2, 2), stride=None):
-        self.pool_size = pool_size
-        self.stride = stride if stride is not None else pool_size[0]
+        """
+        pool_size: (height, width) of the pooling window
+        stride: if None, defaults to pool_size
+        """
+        if isinstance(pool_size, int):
+            self.pool_size = (pool_size, pool_size)
+        else:
+            self.pool_size = pool_size
+            
+        if stride is None:
+            self.stride = self.pool_size[0]
+        elif isinstance(stride, int):
+            self.stride = stride
+        else:
+            raise ValueError("Stride must be an integer or None")
+            
         self.input_data = None
 
     def forward(self, x):
@@ -139,13 +187,23 @@ class Flatten:
         return x.reshape(batch_size, -1)
 
 class Dense:
-    def __init__(self, weights, biases):
+    def __init__(self, weights, biases, activation=None):
         """
         weights: (input_features, num_neurons)
         biases: (num_neurons,)
+        activation: str - 'relu', 'softmax', or None
         """
+        # Input validation
+        if not isinstance(weights, np.ndarray) or len(weights.shape) != 2:
+            raise ValueError("Weights must be a 2D numpy array with shape (input_features, num_neurons)")
+        if not isinstance(biases, np.ndarray) or len(biases.shape) != 1:
+            raise ValueError("Biases must be a 1D numpy array with shape (num_neurons,)")
+        if weights.shape[1] != biases.shape[0]:
+            raise ValueError("Number of neurons in weights must match number of biases")
+        
         self.weights = weights
         self.biases = biases
+        self.activation = activation
         self.input_data = None
 
     def forward(self, x):
@@ -153,7 +211,16 @@ class Dense:
         x: input_data (batch_size, input_features)
         """
         self.input_data = x
-        return np.dot(x, self.weights) + self.biases
+        output = np.dot(x, self.weights) + self.biases
+        
+        # Apply activation if specified
+        if self.activation == 'relu':
+            output = np.maximum(0, output)
+        elif self.activation == 'softmax':
+            exp_x = np.exp(output - np.max(output, axis=1, keepdims=True))
+            output = exp_x / np.sum(exp_x, axis=1, keepdims=True)
+        
+        return output
 
 class Softmax:
     def forward(self, x):

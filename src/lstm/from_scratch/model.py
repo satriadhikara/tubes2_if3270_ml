@@ -66,16 +66,7 @@ class LSTMModelFromScratch:
 
     @classmethod
     def from_keras_model(cls, keras_model_path, vectorizer=None):
-        """
-        Create a LSTMModelFromScratch instance from a saved Keras model
-        
-        Parameters:
-        - keras_model_path: path to the saved Keras model weights (.h5 file)
-        - vectorizer: TextVectorization layer for tokenization (optional)
-        
-        Returns:
-        - LSTMModelFromScratch instance
-        """
+       
         from .layers import Embedding, LSTM, Bidirectional, Dropout, Dense, Softmax, Flatten
         
         # Load Keras model weights

@@ -36,7 +36,7 @@
   },
   "experiment2_results": {
     "Small (32, 16)": {
-      "test_f1": 0.18269812462189958,
+      "test_f1": 0.1844484629294756,
       "config": {
         "units": [
           32,
@@ -46,7 +46,7 @@
       }
     },
     "Medium (64, 32)": {
-      "test_f1": 0.18269812462189958,
+      "test_f1": 0.1844484629294756,
       "config": {
         "units": [
           64,
@@ -75,7 +75,7 @@
       }
     },
     "Bidirectional": {
-      "test_f1": 0.711130583956332,
+      "test_f1": 0.7346509148904182,
       "config": {
         "bidirectional": true,
         "name": "Bidirectional"
@@ -84,19 +84,19 @@
   },
   "best_model": {
     "name": "Bidirectional",
-    "f1_score": 0.711130583956332,
+    "f1_score": 0.7346509148904182,
     "config": {
       "bidirectional": true,
       "name": "Bidirectional",
       "vocab_size": 2836,
       "num_classes": 3,
       "sequence_length": 100,
-      "final_f1_score": 0.711130583956332
+      "final_f1_score": 0.7346509148904182
     }
   },
   "from_scratch_comparison": {
-    "keras_f1": 0.711130583956332,
-    "from_scratch_f1": 0.711130583956332,
+    "keras_f1": 0.7346509148904182,
+    "from_scratch_f1": 0.7346509148904182,
     "agreement_percentage": 100.0
   }
 }

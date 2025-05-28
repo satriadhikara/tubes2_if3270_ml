@@ -1,0 +1,96 @@
+{
+  "experiment1_results": {
+    "1 Layer": {
+      "test_f1": 1.0,
+      "config": {
+        "layers": 1,
+        "units": [
+          64
+        ],
+        "name": "1 Layer"
+      }
+    },
+    "2 Layers": {
+      "test_f1": 1.0,
+      "config": {
+        "layers": 2,
+        "units": [
+          64,
+          32
+        ],
+        "name": "2 Layers"
+      }
+    },
+    "3 Layers": {
+      "test_f1": 0.2730044804733602,
+      "config": {
+        "layers": 3,
+        "units": [
+          64,
+          32,
+          16
+        ],
+        "name": "3 Layers"
+      }
+    }
+  },
+  "experiment2_results": {
+    "Small (32, 16)": {
+      "test_f1": 1.0,
+      "config": {
+        "units": [
+          32,
+          16
+        ],
+        "name": "Small (32, 16)"
+      }
+    },
+    "Medium (64, 32)": {
+      "test_f1": 1.0,
+      "config": {
+        "units": [
+          64,
+          32
+        ],
+        "name": "Medium (64, 32)"
+      }
+    },
+    "Large (128, 64)": {
+      "test_f1": 1.0,
+      "config": {
+        "units": [
+          128,
+          64
+        ],
+        "name": "Large (128, 64)"
+      }
+    }
+  },
+  "experiment3_results": {
+    "Unidirectional": {
+      "test_f1": 1.0,
+      "config": {
+        "bidirectional": false,
+        "name": "Unidirectional"
+      }
+    },
+    "Bidirectional": {
+      "test_f1": 1.0,
+      "config": {
+        "bidirectional": true,
+        "name": "Bidirectional"
+      }
+    }
+  },
+  "best_model": {
+    "name": "1 Layer",
+    "f1_score": 1.0,
+    "config": {
+      "layers": 1,
+      "units": [
+        64
+      ],
+      "name": "1 Layer"
+    }
+  }
+}

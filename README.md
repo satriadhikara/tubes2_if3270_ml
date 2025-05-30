@@ -64,31 +64,26 @@ tubes2_if3270_ml/
 ## Setup dan Instalasi
 
 ### Prerequisites
-- Python 3.8+
-- pip package manager
+- uv (Python package manager)
 - Jupyter Notebook atau JupyterLab
 
 ### 1. Clone Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/satriadhikara/tubes2_if3270_ml
 cd tubes2_if3270_ml
 ```
 
-### 2. Setup Virtual Environment
+### 2. Install Dependencies
 ```bash
-# Membuat virtual environment
-python -m venv .venv
+uv sync
+```
 
-# Aktivasi virtual environment
+### 3. Aktivasi Virtual Environment
+```bash
 # Windows:
 .venv\Scripts\activate
 # Linux/Mac:
 source .venv/bin/activate
-```
-
-### 3. Install Dependencies
-```bash
-pip install tensorflow numpy pandas matplotlib seaborn scikit-learn jupyter requests datasets
 ```
 
 ## Cara Menjalankan Program

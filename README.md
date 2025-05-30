@@ -148,9 +148,9 @@ Dataset LSTM akan didownload secara otomatis ke `src/data/nusax_sentiment/` saat
 
 | Anggota | NIM | Tugas |
 |---------|-----|-------|
-| [Nama Anggota 1] | [NIM] | **CNN Implementation** <br> - `cnn_keras_training.ipynb` <br> - `cnn_from_scratch_testing.ipynb` <br> - CNN layers implementation <br> - CNN experiments & analysis |
-| [Nama Anggota 2] | [NIM] | **RNN Implementation** <br> - `notebook/rnn_keras_training.ipynb` <br> - `notebook/rnn_from_scratch.ipynb` <br> - RNN layers implementation <br> - RNN experiments & analysis |
-| [Nama Anggota 3] | [NIM] | **LSTM Implementation** <br> - `lstm.ipynb` (complete) <br> - `lstm_keras_training.ipynb` <br> - `from_scratch/model.py` & `layers.py` <br> - LSTM experiments & analysis |
+| Satriadhikara Panji Yudhistira | 13522125 | **CNN Implementation** <br> - `cnn_keras_training.ipynb` <br> - `cnn_from_scratch_testing.ipynb` <br> - CNN layers implementation <br> - CNN experiments & analysis |
+| Mohammad Andhika Fadhillah | 13522128 | **RNN Implementation** <br> - `notebook/rnn_keras_training.ipynb` <br> - `notebook/rnn_from_scratch.ipynb` <br> - RNN layers implementation <br> - RNN experiments & analysis |
+| Jonathan Emmanuel Saragih | 13522121 | **LSTM Implementation** <br> - `lstm.ipynb` (complete) <br> - `lstm_keras_training.ipynb` <br> - `from_scratch/model.py` & `layers.py` <br> - LSTM experiments & analysis |
 
 ### Detail Pembagian:
 

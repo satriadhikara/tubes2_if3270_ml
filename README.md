@@ -88,6 +88,16 @@ source .venv/bin/activate
 
 ## Cara Menjalankan Program
 
+### CNN (Convolutional Neural Network)
+```bash
+# Masuk ke direktori CNN
+cd src/cnn/
+
+# Training CNN dengan Keras
+jupyter notebook cnn_keras_training.ipynb
+
+# Untuk testing implementasi from scratch
+jupyter notebook cnn_from_scratch_testing.ipynb
 ```
 
 ### LSTM (Long Short-Term Memory)

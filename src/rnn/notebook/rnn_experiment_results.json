@@ -1,7 +1,7 @@
 {
   "experiment1_results": {
     "1 Layer": {
-      "test_f1": 1.0,
+      "test_f1": 0.32988715366382,
       "config": {
         "layers": 1,
         "units": [
@@ -11,7 +11,7 @@
       }
     },
     "2 Layers": {
-      "test_f1": 1.0,
+      "test_f1": 0.32672155387794644,
       "config": {
         "layers": 2,
         "units": [
@@ -22,7 +22,7 @@
       }
     },
     "3 Layers": {
-      "test_f1": 0.2730044804733602,
+      "test_f1": 0.3655184960582171,
       "config": {
         "layers": 3,
         "units": [
@@ -36,7 +36,7 @@
   },
   "experiment2_results": {
     "Small (32, 16)": {
-      "test_f1": 1.0,
+      "test_f1": 0.30833631484794277,
       "config": {
         "units": [
           32,
@@ -46,7 +46,7 @@
       }
     },
     "Medium (64, 32)": {
-      "test_f1": 1.0,
+      "test_f1": 0.30288429381064624,
       "config": {
         "units": [
           64,
@@ -56,7 +56,7 @@
       }
     },
     "Large (128, 64)": {
-      "test_f1": 1.0,
+      "test_f1": 0.31647759169494954,
       "config": {
         "units": [
           128,
@@ -68,14 +68,14 @@
   },
   "experiment3_results": {
     "Unidirectional": {
-      "test_f1": 1.0,
+      "test_f1": 0.36501221618433805,
       "config": {
         "bidirectional": false,
         "name": "Unidirectional"
       }
     },
     "Bidirectional": {
-      "test_f1": 1.0,
+      "test_f1": 0.44305018514030975,
       "config": {
         "bidirectional": true,
         "name": "Bidirectional"
@@ -83,14 +83,17 @@
     }
   },
   "best_model": {
-    "name": "1 Layer",
-    "f1_score": 1.0,
+    "name": "Bidirectional",
+    "f1_score": 0.44305018514030975,
     "config": {
-      "layers": 1,
-      "units": [
-        64
-      ],
-      "name": "1 Layer"
+      "bidirectional": true,
+      "name": "Bidirectional"
     }
+  },
+  "from_scratch_comparison": {
+    "keras_f1": 0.44305018514030975,
+    "from_scratch_f1": 0.44305018514030975,
+    "agreement_percentage": 100.0,
+    "f1_difference": 0.0
   }
 }

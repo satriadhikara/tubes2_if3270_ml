@@ -11,7 +11,7 @@
       }
     },
     "2 Layers": {
-      "test_f1": 0.1844484629294756,
+      "test_f1": 0.18269812462189958,
       "config": {
         "layers": 2,
         "units": [
@@ -22,7 +22,7 @@
       }
     },
     "3 Layers": {
-      "test_f1": 0.1844484629294756,
+      "test_f1": 0.18269812462189958,
       "config": {
         "layers": 3,
         "units": [
@@ -75,7 +75,7 @@
       }
     },
     "Bidirectional": {
-      "test_f1": 0.7346509148904182,
+      "test_f1": 0.7257356875334403,
       "config": {
         "bidirectional": true,
         "name": "Bidirectional"
@@ -84,19 +84,19 @@
   },
   "best_model": {
     "name": "Bidirectional",
-    "f1_score": 0.7346509148904182,
+    "f1_score": 0.7257356875334403,
     "config": {
       "bidirectional": true,
       "name": "Bidirectional",
       "vocab_size": 2836,
       "num_classes": 3,
       "sequence_length": 100,
-      "final_f1_score": 0.7346509148904182
+      "final_f1_score": 0.7257356875334403
     }
   },
   "from_scratch_comparison": {
-    "keras_f1": 0.7346509148904182,
-    "from_scratch_f1": 0.7346509148904182,
+    "keras_f1": 0.7257356875334403,
+    "from_scratch_f1": 0.7257356875334403,
     "agreement_percentage": 100.0
   }
 }

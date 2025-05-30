@@ -4,6 +4,9 @@ from .layers import Softmax
 class CNNModelFromScratch:
     def __init__(self, layers) -> None:
         """
+        Initializes the CNN model with a list of layers.
+        
+        Input:
         layers: A list of layer instances (e.g., [Conv2D_instance, ReLU_instance, ...])
         """
         if not isinstance(layers, list) or len(layers) == 0:
@@ -13,7 +16,14 @@ class CNNModelFromScratch:
     def forward(self, x):
         """
         Performs a forward pass through all layers.
+        
+        Parameters:
         x: input data (batch_size, height, width, channels) for CNN layers
+        
+        Returns:
+        Output after passing through all layers. Shape depends on the final layer:
+        - For Dense/Softmax layers: (batch_size, num_classes)
+        - For CNN layers: (batch_size, height, width, channels)
         """
         if not isinstance(x, np.ndarray):
             raise ValueError("Input must be a numpy array")
@@ -26,21 +36,22 @@ class CNNModelFromScratch:
 
     def predict(self, x):
         """
-        For classification, this would be the output of the final layer.
-        Returns predicted class indices.
+        Makes predictions for the input data.
+        
+        Parameters:
+        x: input data (batch_size, height, width, channels) for CNN layers.
+        
+        Returns:
+        Predicted class labels (batch_size,).
         """
         output = self.forward(x)
         
-        # Check if the last layer is a Softmax or Dense with softmax activation
         last_layer = self.layers[-1]
         if isinstance(last_layer, Softmax):
-            # Output is already probabilities
             probabilities = output
         elif hasattr(last_layer, 'activation') and last_layer.activation == 'softmax':
-            # Dense layer with softmax activation - output is already probabilities
             probabilities = output
         else:
-            # Output is logits, need to apply softmax
             softmax_layer = Softmax()
             probabilities = softmax_layer.forward(output)
             

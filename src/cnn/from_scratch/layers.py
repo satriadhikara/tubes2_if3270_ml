@@ -3,6 +3,9 @@ import numpy as np
 class Conv2D:
     def __init__(self, weights, biases, stride=1, padding=0, activation=None):
         """
+        Initializes a 2D convolutional layer.
+        
+        Parameters:
         weights: (filter_height, filter_width, input_channels, num_filters)
         biases: (num_filters,)
         stride: int
@@ -24,9 +27,7 @@ class Conv2D:
         self.stride = stride
         self.activation = activation
         
-        # Handle padding parameter
         if isinstance(padding, str) and padding.lower() == 'same':
-            # Calculate padding to maintain input spatial dimensions
             self.padding = (weights.shape[0] - 1) // 2
         elif isinstance(padding, int) and padding >= 0:
             self.padding = padding
@@ -44,8 +45,13 @@ class Conv2D:
 
     def forward(self, x):
         """
+        Performs the forward pass of the convolutional layer.
+        
+        Parameters:
         x: input_data (batch_size, height, width, input_channels)
-        Returns: output of the convolution operation
+        
+        Returns:
+        output: (batch_size, output_height, output_width, num_filters)
         """
         self.input_data = x
         n_batch, h_in, w_in, c_in = x.shape
@@ -79,17 +85,32 @@ class Conv2D:
 
 class ReLU:
     def __init__(self):
+        """
+        Initializes the ReLU activation layer.
+        """
         self.input_data = None
 
     def forward(self, x):
+        """
+        Performs the forward pass of the ReLU activation.
+        
+        Parameters:
+        x: input_data (batch_size, height, width, channels)
+        
+        Returns:
+        output: (batch_size, height, width, channels) with ReLU applied
+        """
         self.input_data = x
         return np.maximum(0, x)
 
 class MaxPooling2D:
     def __init__(self, pool_size=(2, 2), stride=None):
         """
+        Initializes a 2D max pooling layer.
+        
+        Parameters:
         pool_size: (height, width) of the pooling window
-        stride: if None, defaults to pool_size
+        stride: int or None - if None, defaults to pool_size
         """
         if isinstance(pool_size, int):
             self.pool_size = (pool_size, pool_size)
@@ -107,7 +128,13 @@ class MaxPooling2D:
 
     def forward(self, x):
         """
+        Performs the forward pass of the max pooling layer.
+        
+        Parameters:
         x: input_data (batch_size, height, width, channels)
+        
+        Returns:
+        output: (batch_size, output_height, output_width, channels)
         """
         self.input_data = x
         n_batch, h_in, w_in, c_in = x.shape
@@ -135,8 +162,11 @@ class MaxPooling2D:
 class AveragePooling2D:
     def __init__(self, pool_size=(2, 2), stride=None):
         """
+        Initializes a 2D average pooling layer.
+        
+        Parameters:
         pool_size: (height, width) of the pooling window
-        stride: if None, defaults to pool_size
+        stride: int or None - if None, defaults to pool_size
         """
         if isinstance(pool_size, int):
             self.pool_size = (pool_size, pool_size)
@@ -153,6 +183,12 @@ class AveragePooling2D:
         self.input_data = None
 
     def forward(self, x):
+        """
+        Performs the forward pass of the average pooling layer.
+        
+        Parameters:
+        x: input_data (batch_size, height, width, channels)
+        """
         self.input_data = x
         n_batch, h_in, w_in, c_in = x.shape
         ph, pw = self.pool_size
@@ -179,9 +215,21 @@ class AveragePooling2D:
 
 class Flatten:
     def __init__(self):
+        """
+        Initializes the Flatten layer.
+        """
         self.input_shape = None
 
     def forward(self, x):
+        """
+        Flattens the input data.
+        
+        Parameters:
+        x: input_data (batch_size, height, width, channels)
+        
+        Returns:
+        output: (batch_size, flattened_features) where flattened_features = height * width * channels
+        """
         self.input_shape = x.shape
         batch_size = x.shape[0]
         return x.reshape(batch_size, -1)
@@ -189,11 +237,14 @@ class Flatten:
 class Dense:
     def __init__(self, weights, biases, activation=None):
         """
+        Initializes a fully connected (dense) layer.
+        
+        Parameters:
         weights: (input_features, num_neurons)
         biases: (num_neurons,)
         activation: str - 'relu', 'softmax', or None
         """
-        # Input validation
+        
         if not isinstance(weights, np.ndarray) or len(weights.shape) != 2:
             raise ValueError("Weights must be a 2D numpy array with shape (input_features, num_neurons)")
         if not isinstance(biases, np.ndarray) or len(biases.shape) != 1:
@@ -208,12 +259,17 @@ class Dense:
 
     def forward(self, x):
         """
+        Performs the forward pass of the dense layer.
+        
+        Parameters:
         x: input_data (batch_size, input_features)
+        
+        Returns:
+        output: (batch_size, num_neurons)
         """
         self.input_data = x
         output = np.dot(x, self.weights) + self.biases
         
-        # Apply activation if specified
         if self.activation == 'relu':
             output = np.maximum(0, output)
         elif self.activation == 'softmax':
@@ -225,7 +281,13 @@ class Dense:
 class Softmax:
     def forward(self, x):
         """
+        Applies the softmax function to the input data.
+        
+        Parameters:
         x: input_data (batch_size, num_classes)
+        
+        Returns:
+        output: (batch_size, num_classes) - probabilities summing to 1
         """
         exp_x = np.exp(x - np.max(x, axis=1, keepdims=True)) 
         return exp_x / np.sum(exp_x, axis=1, keepdims=True) 

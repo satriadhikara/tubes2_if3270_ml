@@ -154,7 +154,7 @@ Dataset LSTM akan didownload secara otomatis ke `src/data/nusax_sentiment/` saat
 
 ### Detail Pembagian:
 
-#### CNN Team
+#### CNN 
 - **File yang dikerjakan:**
   - `src/cnn/cnn_keras_training.ipynb`
   - `src/cnn/cnn_from_scratch_testing.ipynb`
@@ -165,7 +165,7 @@ Dataset LSTM akan didownload secara otomatis ke `src/data/nusax_sentiment/` saat
   - Eksperimen dengan berbagai konfigurasi CNN
   - Analisis performa dan perbandingan hasil
 
-#### RNN Team
+#### RNN 
 - **File yang dikerjakan:**
   - `src/rnn/notebook/rnn_keras_training.ipynb`
   - `src/rnn/notebook/rnn_from_scratch.ipynb`
@@ -176,7 +176,7 @@ Dataset LSTM akan didownload secara otomatis ke `src/data/nusax_sentiment/` saat
   - Eksperimen dengan berbagai konfigurasi RNN
   - Analisis performa dan perbandingan hasil
 
-#### LSTM Team
+#### LSTM 
 - **File yang dikerjakan:**
   - `src/lstm/lstm.ipynb` (implementasi lengkap)
   - `src/lstm/lstm_keras_training.ipynb`
